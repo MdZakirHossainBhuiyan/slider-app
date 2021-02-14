@@ -14,8 +14,7 @@ let sliders = [];
 const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 document.getElementById('search').addEventListener('keypress', (event) => {
-  console.log('enter btn check');
-  console.log("event.key: ",event.key);
+  
   if(event.key === 'Enter'){
     document.getElementById('search-btn').click();
   }
@@ -77,7 +76,11 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('duration').value || 1000;
+  let duration = document.getElementById('duration').value || 1000;
+  if(duration<0){
+    alert("Given duration is Negative. Work with default duration.");
+    duration = 1000;
+  }
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
