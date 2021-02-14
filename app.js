@@ -50,7 +50,7 @@ const selectItem = (event, img) => {
     sliders.push(img);
   } else {
     sliders = sliders.filter(item => item !== img);
-    img.display.border = "none";
+    element.classList.remove('added');
   }
 }
 var timer
@@ -74,7 +74,7 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
 
-  
+
 
   let duration = document.getElementById('duration').value || 1000;
   if(duration<0){
