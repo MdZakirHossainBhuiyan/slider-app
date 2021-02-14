@@ -13,13 +13,22 @@ let sliders = [];
 // to create your own api key
 const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
+document.getElementById('search').addEventListener('keypress', (event) => {
+  console.log('enter btn check');
+  console.log("event.key: ",event.key);
+  if(event.key === 'Enter'){
+    document.getElementById('search-btn').click();
+  }
+})
+
 // show images 
 const showImages = (images) => {
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
   // show gallery title
   galleryHeader.style.display = 'flex';
-  images.forEach(image => {
+
+  images.hits.forEach(image => {
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
@@ -31,7 +40,8 @@ const showImages = (images) => {
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
-    .then(data => showImages(data.hitS))
+    // .then(data => console.log(data.hitS))
+    .then(data => showImages(data))
     .catch(err => console.log(err))
 }
 
