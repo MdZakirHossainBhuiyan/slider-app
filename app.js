@@ -7,10 +7,6 @@ const sliderContainer = document.getElementById('sliders');
 // selected image 
 let sliders = [];
 
-
-// If this key doesn't work
-// Find the name in the url and go to their website
-// to create your own api key
 const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 document.getElementById('search').addEventListener('keypress', (event) => {
@@ -53,7 +49,8 @@ const selectItem = (event, img) => {
   if (item === -1) {
     sliders.push(img);
   } else {
-    alert('Hey, Already added !')
+    sliders = sliders.filter(item => item !== img);
+    img.display.border = "none";
   }
 }
 var timer
@@ -76,6 +73,9 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
+
+  
+
   let duration = document.getElementById('duration').value || 1000;
   if(duration<0){
     alert("Given duration is Negative. Work with default duration.");
